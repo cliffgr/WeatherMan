@@ -1,24 +1,18 @@
 package com.example.weatherman.ui.hourlyreport;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.weatherman.databinding.ActivityHourlyBinding;
-import com.example.weatherman.ui.hourlyreport.adapter.DemoCollectionAdapter;
-import com.example.weatherman.utils.Constants;
+import com.example.weatherman.ui.hourlyreport.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 public class HourlyActivity extends AppCompatActivity {
@@ -27,7 +21,7 @@ public class HourlyActivity extends AppCompatActivity {
     private ActivityHourlyBinding hourlyBinding;
     private HourlyViewModel hourlyViewModel;
     private String cityName, date;
-    private DemoCollectionAdapter demoCollectionAdapter;
+    private ViewPagerAdapter viewPagerAdapter;
     private SimpleDateFormat spf = new SimpleDateFormat("hhmm", Locale.getDefault());
     private SimpleDateFormat spf2 = new SimpleDateFormat("HH:mm", Locale.getDefault());
 
@@ -46,7 +40,7 @@ public class HourlyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         hourlyBinding = ActivityHourlyBinding.inflate(getLayoutInflater());
         hourlyViewModel = new ViewModelProvider(this).get(HourlyViewModel.class);
-        demoCollectionAdapter = new DemoCollectionAdapter(this);
+        viewPagerAdapter = new ViewPagerAdapter(this);
 
 
         Bundle bundle = getIntent().getBundleExtra("bundle");
@@ -57,8 +51,8 @@ public class HourlyActivity extends AppCompatActivity {
 
 
         hourlyViewModel.getRequestResponse().observe(this, data -> {
-            demoCollectionAdapter.setData(data.getData().getWeather().get(0).getHourly());
-            hourlyBinding.pager.setAdapter(demoCollectionAdapter);
+            viewPagerAdapter.setData(data.getData().getWeather().get(0).getHourly());
+            hourlyBinding.pager.setAdapter(viewPagerAdapter);
             new TabLayoutMediator(hourlyBinding.tabLayout, hourlyBinding.pager, (tab, position) -> {
                 String time = data.getData().getWeather().get(0).getHourly().get(position).getTime();
                 tab.setText(time);

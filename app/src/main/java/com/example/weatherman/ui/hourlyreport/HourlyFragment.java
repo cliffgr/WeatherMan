@@ -20,6 +20,7 @@ public class HourlyFragment extends Fragment {
     private Hourly hourly;
     private FragmentHourlyBinding fragmentHourlyBinding;
 
+
     public HourlyFragment() {
         // Required empty public constructor
     }
@@ -44,6 +45,8 @@ public class HourlyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         fragmentHourlyBinding = FragmentHourlyBinding.inflate(getLayoutInflater());
+
+
         return fragmentHourlyBinding.getRoot();
     }
 
@@ -56,6 +59,9 @@ public class HourlyFragment extends Fragment {
                 .load(hourly.getWeatherIconUrl().get(0).getValue().replace("http://", "https://"))
                 .into(fragmentHourlyBinding.weatherIcon);
 
-
+        fragmentHourlyBinding.windDescription.setText(hourly.getWindspeedKmph() + "km/h");
+        fragmentHourlyBinding.humidityDescription.setText(hourly.getHumidity() + "%");
+        fragmentHourlyBinding.gustDescription.setText(hourly.getWindGustKmph() + "km/h");
+        fragmentHourlyBinding.rainDescription.setText(hourly.getChanceofrain() + "%");
     }
 }

@@ -41,4 +41,157 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/temperature" />
 
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weather_description">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/gust_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/gust_title"
+            app:layout_constraintStart_toStartOf="@+id/gust_title"
+            app:layout_constraintTop_toBottomOf="@+id/gust_title"
+            tools:text="30%" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/gust_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:text="Gust"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/gust_image"
+            app:layout_constraintStart_toStartOf="@+id/gust_image"
+            app:layout_constraintTop_toBottomOf="@+id/gust_image" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/gust_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/rain_image"
+            app:layout_constraintStart_toStartOf="@+id/rain_image"
+            app:layout_constraintTop_toBottomOf="@+id/rain_description"
+            app:srcCompat="@drawable/ic_gust" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/humidity_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/humidity_title"
+            app:layout_constraintStart_toStartOf="@+id/humidity_title"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_title"
+            tools:text="30%" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/humidity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:text="Humidity Percentage"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/humidity_image"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="@+id/humidity_image"
+            app:layout_constraintTop_toBottomOf="@+id/humidity_image" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/humidity_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="@+id/wind_image"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/wind_image"
+            app:layout_constraintTop_toBottomOf="@+id/wind_description"
+            app:srcCompat="@drawable/ic_humidity" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rain_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:text="Rain Percentage"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/rain_image"
+            app:layout_constraintStart_toStartOf="@+id/rain_image"
+            app:layout_constraintTop_toBottomOf="@+id/rain_image" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rain_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/rain_image"
+            app:layout_constraintStart_toStartOf="@+id/rain_image"
+            app:layout_constraintTop_toBottomOf="@+id/rain_title"
+            tools:text="30%" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/rain_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/wind_image"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_rain" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/wind_image"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/rain_image"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_wind" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wind_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:text="Wind"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/wind_description"
+            app:layout_constraintStart_toStartOf="@+id/wind_description"
+            app:layout_constraintTop_toBottomOf="@+id/wind_image" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/wind_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/baloo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintEnd_toEndOf="@+id/wind_image"
+            app:layout_constraintStart_toStartOf="@+id/wind_image"
+            app:layout_constraintTop_toBottomOf="@+id/wind_title"
+            tools:text="30%" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

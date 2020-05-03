@@ -10,11 +10,11 @@ import com.example.weatherman.ui.hourlyreport.HourlyFragment;
 
 import java.util.List;
 
-public class DemoCollectionAdapter extends FragmentStateAdapter {
+public class ViewPagerAdapter extends FragmentStateAdapter {
 
     private List<Hourly> hourlyList;
 
-    public DemoCollectionAdapter(FragmentActivity fragment) {
+    public ViewPagerAdapter(FragmentActivity fragment) {
         super(fragment);
     }
 
