@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.weatherman.data.NetworkRepository;
+import com.example.weatherman.data.Repository;
 import com.example.weatherman.data.model.weather.CityWeather;
 import com.example.weatherman.utils.Constants;
 
@@ -16,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class DetailsViewModel extends AndroidViewModel {
 
-    private NetworkRepository networkRepository;
+    private Repository repository;
     private MutableLiveData<CityWeather> requestResponse = new MutableLiveData<>();
     private final CompositeDisposable disposables = new CompositeDisposable();
 
@@ -27,12 +27,12 @@ public class DetailsViewModel extends AndroidViewModel {
 
     public DetailsViewModel(@NonNull Application application) {
         super(application);
-        networkRepository = new NetworkRepository(application);
+        repository = new Repository(application);
     }
 
 
     public void requestForCity(String cityName) {
-        disposables.add(networkRepository.getWeatherDetails(Constants.KEY, cityName)
+        disposables.add(repository.getWeatherDetails(Constants.KEY, cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

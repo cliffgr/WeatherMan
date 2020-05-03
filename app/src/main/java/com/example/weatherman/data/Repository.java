@@ -22,13 +22,13 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class NetworkRepository {
+public class Repository {
 
     private ApiRequest apiRequest;
     private AppDatabase db;
     private SharedPreferences mPrefs;
 
-    public NetworkRepository(Application application) {
+    public Repository(Application application) {
         //TODO Remove allow on main Thread
         db = Room.databaseBuilder(application, AppDatabase.class, "DBNAME1").allowMainThreadQueries().build();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(application);
@@ -79,7 +79,7 @@ public class NetworkRepository {
 
     public void setFirstRun() {
         SharedPreferences.Editor editor = mPrefs.edit();
-        editor.putBoolean(Constants.FIRST_RUN, true);
+        editor.putBoolean(Constants.FIRST_RUN, false);
         editor.apply();
     }
 

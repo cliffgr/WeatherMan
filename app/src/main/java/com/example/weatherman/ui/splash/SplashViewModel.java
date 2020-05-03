@@ -6,11 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.weatherman.data.NetworkRepository;
+import com.example.weatherman.data.Repository;
 
 public class SplashViewModel extends AndroidViewModel {
 
-    private NetworkRepository networkRepository;
+    private Repository repository;
     private MutableLiveData<Boolean> isFirstRun;
 
 
@@ -21,11 +21,11 @@ public class SplashViewModel extends AndroidViewModel {
     public SplashViewModel(@NonNull Application application) {
         super(application);
         isFirstRun = new MutableLiveData<>();
-        networkRepository = new NetworkRepository(application);
+        repository = new Repository(application);
     }
 
     public void checkFirstRun(){
-        isFirstRun.setValue(networkRepository.isFirstRun());
+        isFirstRun.setValue(repository.isFirstRun());
     }
 
 }

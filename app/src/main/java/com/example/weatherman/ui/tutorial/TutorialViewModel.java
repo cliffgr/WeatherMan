@@ -1,7 +1,6 @@
 package com.example.weatherman.ui.tutorial;
 
 import android.app.Application;
-import android.util.Log;
 import android.util.Pair;
 
 import androidx.annotation.NonNull;
@@ -10,7 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
-import com.example.weatherman.data.NetworkRepository;
+import com.example.weatherman.data.Repository;
 
 import com.example.weatherman.data.model.common.Request;
 import com.example.weatherman.data.model.support.Supported;
@@ -24,7 +23,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TutorialViewModel extends AndroidViewModel {
 
-    private NetworkRepository networkRepository;
+    private Repository repository;
     private MutableLiveData<Supported> requestResponse = new MutableLiveData<>();
     private final CompositeDisposable disposables = new CompositeDisposable();
     private final LiveData<Pair<String, Boolean>> isSupported = Transformations.switchMap(requestResponse, response -> {
@@ -50,23 +49,23 @@ public class TutorialViewModel extends AndroidViewModel {
 
     public TutorialViewModel(@NonNull Application application) {
         super(application);
-        networkRepository = new NetworkRepository(application);
+        repository = new Repository(application);
     }
 
     public void addCity(String cityName) {
-        networkRepository.insertCity(cityName);
+        repository.insertCity(cityName);
     }
 
     public void removeCity(String cityName) {
-        networkRepository.removeCity(cityName);
+        repository.removeCity(cityName);
     }
 
     public void setFirstRun(){
-        networkRepository.setFirstRun();
+        repository.setFirstRun();
     }
 
     public void requestForCity(String cityName) {
-        disposables.add(networkRepository.isCitySupported(Constants.KEY, cityName)
+        disposables.add(repository.isCitySupported(Constants.KEY, cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

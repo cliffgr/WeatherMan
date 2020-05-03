@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.example.weatherman.data.local.database.Cities;
-import com.example.weatherman.data.NetworkRepository;
+import com.example.weatherman.data.Repository;
 import com.example.weatherman.data.model.common.Request;
 import com.example.weatherman.data.model.support.Supported;
 import com.example.weatherman.data.model.weather.CityWeather;
@@ -27,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
 
 
 public class MainViewModel extends AndroidViewModel {
-    private NetworkRepository networkRepository;
+    private Repository repository;
     private MutableLiveData<List<CityWeather>> currentMutableLiveData;
     private MutableLiveData<List<Cities>> listCitiesMutableLiveData;
     private final CompositeDisposable disposables = new CompositeDisposable();
@@ -64,7 +64,7 @@ public class MainViewModel extends AndroidViewModel {
 
     public MainViewModel(Application application) {
         super(application);
-        networkRepository = new NetworkRepository(application);
+        repository = new Repository(application);
         currentMutableLiveData = new MutableLiveData<>();
         listCitiesMutableLiveData = new MutableLiveData<>();
     }
@@ -90,7 +90,7 @@ public class MainViewModel extends AndroidViewModel {
 
         for (Cities city : citiesList) {
             final Observable<CityWeather> feedObservable =
-                    networkRepository.getCurrentWeather(Constants.KEY, city.getCityName())
+                    repository.getCurrentWeather(Constants.KEY, city.getCityName())
                             .onErrorReturn(e -> new CityWeather());
             observableList.add(feedObservable);
         }
@@ -113,7 +113,7 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void requestForCity(String cityName) {
-        disposables.add(networkRepository.isCitySupported(Constants.KEY, cityName)
+        disposables.add(repository.isCitySupported(Constants.KEY, cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
@@ -122,11 +122,11 @@ public class MainViewModel extends AndroidViewModel {
     }
 
     public void addCity(String cityName) {
-        networkRepository.insertCity(cityName);
+        repository.insertCity(cityName);
     }
 
     public void removeCity(String cityName) {
-        networkRepository.removeCity(cityName);
+        repository.removeCity(cityName);
     }
 
     private void result(List<CityWeather> cityWeathers) {
@@ -136,7 +136,7 @@ public class MainViewModel extends AndroidViewModel {
 
     private List<Cities> getAllCities() {
         try {
-            return networkRepository.getCities();
+            return repository.getCities();
         } catch (ExecutionException | InterruptedException e) {
             return new ArrayList<>();
         }
