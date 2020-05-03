@@ -1,0 +1,18 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="Manage your MainMenu">
+
+
+        <ListPreference
+            app:defaultValue="0"
+            app:entries="@array/pref_temperature_type_entries"
+            app:entryValues="@array/pref_temperature_type_values"
+            app:key="temp"
+            app:title="Change type of temperature"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
