@@ -53,4 +53,12 @@
         app:layout_anchor="@id/swipe_refresh"
         app:layout_anchorGravity="bottom|center_horizontal" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/swipe_refresh"
+        app:layout_anchorGravity="center" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

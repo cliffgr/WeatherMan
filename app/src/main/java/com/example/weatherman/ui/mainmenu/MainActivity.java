@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.weatherman.R;
 import com.example.weatherman.databinding.ActivityMainBinding;
@@ -72,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogFrag
             if (menuItem.getItemId() == R.id.menu)
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
             return true;
+        });
+
+
+        viewModel.getProgressBarLiveData().observe(this, flag -> {
+            activityMainBinding.progressBar.setVisibility(flag ? View.VISIBLE : View.GONE);
         });
 
 

@@ -14,6 +14,7 @@ import com.example.weatherman.data.Repository;
 import com.example.weatherman.data.model.common.Request;
 import com.example.weatherman.data.model.support.Supported;
 import com.example.weatherman.data.model.weather.CityWeather;
+import com.example.weatherman.ui.base.SingleLiveEvent;
 import com.example.weatherman.utils.Constants;
 
 import java.util.ArrayList;
@@ -21,8 +22,10 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -30,8 +33,11 @@ public class MainViewModel extends AndroidViewModel {
     private Repository repository;
     private MutableLiveData<List<CityWeather>> currentMutableLiveData;
     private MutableLiveData<List<Cities>> listCitiesMutableLiveData;
-    private final CompositeDisposable disposables = new CompositeDisposable();
     private MutableLiveData<Supported> requestResponse = new MutableLiveData<>();
+    private SingleLiveEvent<Boolean> progressBarLiveData;
+
+    private final CompositeDisposable disposables = new CompositeDisposable();
+
     private final LiveData<Pair<String, Boolean>> isSupported = Transformations.switchMap(requestResponse, response -> {
         MutableLiveData<Pair<String, Boolean>> flag = new MutableLiveData<>();
         if (response.getData().getError() != null)
@@ -62,15 +68,22 @@ public class MainViewModel extends AndroidViewModel {
         return listCitiesMutableLiveData;
     }
 
+    public SingleLiveEvent<Boolean> getProgressBarLiveData() {
+        return progressBarLiveData;
+    }
+
     public MainViewModel(Application application) {
         super(application);
         repository = new Repository(application);
         currentMutableLiveData = new MutableLiveData<>();
         listCitiesMutableLiveData = new MutableLiveData<>();
+        progressBarLiveData = new SingleLiveEvent<>();
     }
 
 
     public void fetchWeather() {
+
+        progressBarLiveData.setValue(true);
 
         /*for (Cities city : citiesList) {
             disposables.add((Disposable) networkRepository.getCurrentWeather(Constants.KEY, city.getCityName())
@@ -95,21 +108,19 @@ public class MainViewModel extends AndroidViewModel {
             observableList.add(feedObservable);
         }
 
-        Observable<List<CityWeather>> combinedObservable =
-                Observable.combineLatest(observableList,
-                        (listOfLists) -> {
-                            final List<CityWeather> combinedList = new ArrayList<>();
-                            for (Object current : listOfLists) {
-                                combinedList.add((CityWeather) current);
-                            }
-                            return combinedList;
-                        }
-                );
+        Observable<List<CityWeather>> combinedObservable = Observable.zip(observableList, listOfLists -> {
+            final List<CityWeather> combinedList = new ArrayList<>();
+            for (Object current : listOfLists) {
+                combinedList.add((CityWeather) current);
+            }
+            return combinedList;
+        });
 
         combinedObservable
                 .doOnSubscribe(disposable -> {
                 })
                 .doOnTerminate(() -> {
+                    progressBarLiveData.setValue(false);
                 })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::result);
