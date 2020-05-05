@@ -29,7 +29,7 @@
             android:theme="@style/ActivitiesTheme" />
         <activity
             android:name=".ui.detail.DetailsViewActivity"
-            android:theme="@style/ActivityWithToobar">
+            android:theme="@style/ActivitiesTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.mainmenu.MainActivity" />
@@ -37,14 +37,14 @@
         <activity
             android:name=".ui.settings.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/ActivityWithToobar">
+            android:theme="@style/ActivitiesTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.mainmenu.MainActivity" />
         </activity>
         <activity
             android:name=".ui.hourlyreport.HourlyActivity"
-            android:theme="@style/ActivityWithToobar">
+            android:theme="@style/ActivitiesTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.detail.DetailsViewActivity" />

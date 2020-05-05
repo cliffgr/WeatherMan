@@ -13,7 +13,8 @@
             style="@style/Widget.MaterialComponents.Toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_close_black_24dp"/>
+            android:theme="@style/ToolbarTheme"
+            app:navigationIcon="@drawable/ic_close_black_24dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

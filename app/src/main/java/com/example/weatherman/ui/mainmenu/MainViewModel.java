@@ -107,6 +107,10 @@ public class MainViewModel extends AndroidViewModel {
                 );
 
         combinedObservable
+                .doOnSubscribe(disposable -> {
+                })
+                .doOnTerminate(() -> {
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::result);
 

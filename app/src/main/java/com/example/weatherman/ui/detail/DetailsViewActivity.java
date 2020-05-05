@@ -2,6 +2,7 @@ package com.example.weatherman.ui.detail;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -43,6 +44,10 @@ public class DetailsViewActivity extends AppCompatActivity {
         activityDetailsViewBinding = ActivityDetailsViewBinding.inflate(getLayoutInflater());
         detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
 
+        setSupportActionBar(activityDetailsViewBinding.topAppBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         Bundle bundle = getIntent().getBundleExtra("bundle");
         if (bundle != null) {
             cityName = bundle.getString(CITY_NAME);
@@ -55,6 +60,7 @@ public class DetailsViewActivity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
         dailyReportAdapter = new DailyReportAdapter();
+
 
 
         activityDetailsViewBinding.myRecyclerView.setLayoutManager(layoutManager);
@@ -100,5 +106,11 @@ public class DetailsViewActivity extends AppCompatActivity {
         outState.putString(CITY_NAME, cityName);
         super.onSaveInstanceState(outState);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

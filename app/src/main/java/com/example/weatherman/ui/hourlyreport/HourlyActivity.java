@@ -40,6 +40,11 @@ public class HourlyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         hourlyBinding = ActivityHourlyBinding.inflate(getLayoutInflater());
         hourlyViewModel = new ViewModelProvider(this).get(HourlyViewModel.class);
+
+        setSupportActionBar(hourlyBinding.topAppBar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         viewPagerAdapter = new ViewPagerAdapter(this);
 
 
@@ -72,8 +77,6 @@ public class HourlyActivity extends AppCompatActivity {
         setContentView(hourlyBinding.getRoot());
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
@@ -89,5 +92,11 @@ public class HourlyActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

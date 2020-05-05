@@ -32,20 +32,19 @@
     </style>
 
 
-    <style name="FullScreenDialogStyle" parent="Theme.AppCompat.Dialog">
+    <style name="FullScreenDialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
         <item name="android:windowNoTitle">true</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorPrimary">@color/colorPrimary</item>
-
-        <!-- Set this to true if you want Full Screen without status bar -->
         <item name="android:windowFullscreen">false</item>
-
         <item name="android:windowIsFloating">false</item>
-
-        <!-- This is important! Don't forget to set window background -->
         <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowEnterAnimation">@anim/slide_up</item>
+        <item name="android:windowExitAnimation">@anim/slide_down</item>
+    </style>
 
-
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
+        <item name="android:fontFamily">@font/baloo</item>
     </style>
 
     <style name="circleImageView" parent="">
