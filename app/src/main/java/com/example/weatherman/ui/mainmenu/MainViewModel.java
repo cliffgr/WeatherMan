@@ -83,8 +83,6 @@ public class MainViewModel extends AndroidViewModel {
 
     public void fetchWeather() {
 
-        progressBarLiveData.setValue(true);
-
         /*for (Cities city : citiesList) {
             disposables.add((Disposable) networkRepository.getCurrentWeather(Constants.KEY, city.getCityName())
                     .subscribeOn(Schedulers.io())
@@ -93,10 +91,7 @@ public class MainViewModel extends AndroidViewModel {
 
         List<Observable<CityWeather>> observableList = new ArrayList<>();
         List<Cities> citiesList = getAllCities();
-
-        Log.e(Constants.TAG, "Cities :" + citiesList.toString());
-
-        if (citiesList == null || citiesList.isEmpty()) {
+        if (citiesList.isEmpty()) {
             currentMutableLiveData.postValue(new ArrayList<>());
             return;
         }
@@ -118,6 +113,7 @@ public class MainViewModel extends AndroidViewModel {
 
         combinedObservable
                 .doOnSubscribe(disposable -> {
+                    progressBarLiveData.setValue(true);
                 })
                 .doOnTerminate(() -> {
                     progressBarLiveData.setValue(false);
@@ -127,7 +123,7 @@ public class MainViewModel extends AndroidViewModel {
 
     }
 
-    public void requestForCity(String cityName) {
+    void requestForCity(String cityName) {
         disposables.add(repository.isCitySupported(Constants.KEY, cityName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -136,11 +132,11 @@ public class MainViewModel extends AndroidViewModel {
                 ));
     }
 
-    public void addCity(String cityName) {
+    void addCity(String cityName) {
         repository.insertCity(cityName);
     }
 
-    public void removeCity(String cityName) {
+    void removeCity(String cityName) {
         repository.removeCity(cityName);
     }
 
