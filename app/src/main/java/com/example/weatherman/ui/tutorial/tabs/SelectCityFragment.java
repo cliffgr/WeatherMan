@@ -13,13 +13,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.weatherman.databinding.SlideTwoBinding;
 import com.example.weatherman.ui.tutorial.TutorialViewModel;
+import com.google.android.material.chip.Chip;
 
 public class SelectCityFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
     private TutorialViewModel tutorialViewModel;
     private SlideTwoBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = SlideTwoBinding.inflate(getLayoutInflater());
         return binding.getRoot();
     }
@@ -32,12 +33,21 @@ public class SelectCityFragment extends Fragment implements CompoundButton.OnChe
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        binding.chipLondon.setOnCheckedChangeListener(this);
-        binding.chipAthens.setOnCheckedChangeListener(this);
-        binding.chipNewYork.setOnCheckedChangeListener(this);
-        binding.chipParis.setOnCheckedChangeListener(this);
-        binding.chipMoscow.setOnCheckedChangeListener(this);
-        binding.chipTokyo.setOnCheckedChangeListener(this);
+        addChipToGroup("London");
+        addChipToGroup("Athens");
+        addChipToGroup("NewYork");
+        addChipToGroup("Paris");
+        addChipToGroup("Moscow");
+        addChipToGroup("Tokyo");
+    }
+
+    private void addChipToGroup(String chipName) {
+        Chip chip = new Chip(requireActivity());
+        chip.setText(chipName);
+        chip.setTag(chipName);
+        chip.setCheckable(true);
+        chip.setOnCheckedChangeListener(this);
+        binding.chipGroup.addView(chip);
     }
 
     @Override

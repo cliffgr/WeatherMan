@@ -51,74 +51,18 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_london"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chip_group"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="London"
-        app:layout_constraintEnd_toStartOf="@+id/chip_new_york"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:foregroundGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_athens"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Athens"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/chip_new_york"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_new_york"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New York"
-        app:layout_constraintEnd_toStartOf="@+id/chip_athens"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/chip_london"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_paris"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Paris"
-        app:layout_constraintEnd_toStartOf="@+id/chip_tokyo"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chip_london" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_tokyo"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Tokyo"
-        app:layout_constraintEnd_toStartOf="@+id/chip_moscow"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/chip_paris"
-        app:layout_constraintTop_toBottomOf="@+id/chip_new_york" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_moscow"
-        style="@style/Widget.MaterialComponents.Chip.Choice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Moscow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/chip_tokyo"
-        app:layout_constraintTop_toBottomOf="@+id/chip_athens" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
