@@ -35,7 +35,7 @@ public class SelectCityFragment extends Fragment implements CompoundButton.OnChe
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         addChipToGroup("London");
         addChipToGroup("Athens");
-        addChipToGroup("NewYork");
+        addChipToGroup("New York");
         addChipToGroup("Paris");
         addChipToGroup("Moscow");
         addChipToGroup("Tokyo");
