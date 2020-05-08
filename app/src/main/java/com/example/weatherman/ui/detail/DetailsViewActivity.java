@@ -18,6 +18,7 @@ import com.example.weatherman.data.model.weather.CityWeather;
 import com.example.weatherman.data.model.weather.CurrentCondition;
 import com.example.weatherman.data.model.weather.Weather;
 import com.example.weatherman.databinding.ActivityDetailsViewBinding;
+import com.example.weatherman.ui.base.ViewModelFactory;
 import com.example.weatherman.ui.detail.adapter.DailyReportAdapter;
 import com.example.weatherman.ui.hourlyreport.HourlyActivity;
 
@@ -43,8 +44,9 @@ public class DetailsViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewModelFactory factory = new ViewModelFactory(getApplication());
         activityDetailsViewBinding = ActivityDetailsViewBinding.inflate(getLayoutInflater());
-        detailsViewModel = new ViewModelProvider(this).get(DetailsViewModel.class);
+        detailsViewModel = new ViewModelProvider(this, factory).get(DetailsViewModel.class);
 
         setSupportActionBar(activityDetailsViewBinding.topAppBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

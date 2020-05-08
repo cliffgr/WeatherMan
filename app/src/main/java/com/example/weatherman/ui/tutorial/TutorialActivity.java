@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.weatherman.R;
 import com.example.weatherman.databinding.ActivityViewsSliderBinding;
+import com.example.weatherman.ui.base.ViewModelFactory;
 import com.example.weatherman.ui.mainmenu.MainActivity;
 import com.example.weatherman.ui.tutorial.adapter.ViewPagerFragmentAdapter;
 
@@ -25,7 +26,8 @@ public class TutorialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        tutorialViewModel = new ViewModelProvider(this).get(TutorialViewModel.class);
+        ViewModelFactory factory = new ViewModelFactory(getApplication());
+        tutorialViewModel = new ViewModelProvider(this, factory).get(TutorialViewModel.class);
         binding = ActivityViewsSliderBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();

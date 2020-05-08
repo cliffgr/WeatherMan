@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.weatherman.databinding.ActivityHourlyBinding;
+import com.example.weatherman.ui.base.ViewModelFactory;
 import com.example.weatherman.ui.hourlyreport.adapter.ViewPagerAdapter;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -38,8 +39,9 @@ public class HourlyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ViewModelFactory factory = new ViewModelFactory(getApplication());
         hourlyBinding = ActivityHourlyBinding.inflate(getLayoutInflater());
-        hourlyViewModel = new ViewModelProvider(this).get(HourlyViewModel.class);
+        hourlyViewModel = new ViewModelProvider(this,factory).get(HourlyViewModel.class);
 
         setSupportActionBar(hourlyBinding.topAppBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

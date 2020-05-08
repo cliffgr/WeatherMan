@@ -16,9 +16,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ViewSwitcher;
 
 import com.example.weatherman.R;
 import com.example.weatherman.databinding.ActivityMainBinding;
+import com.example.weatherman.ui.base.ViewModelFactory;
 import com.example.weatherman.ui.detail.DetailsViewActivity;
 import com.example.weatherman.ui.mainmenu.adapter.WeatherAdapter;
 import com.example.weatherman.ui.settings.SettingsActivity;
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity implements AddCityDialogFrag
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
 
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        ViewModelFactory factory = new ViewModelFactory(getApplication());
+        viewModel = new ViewModelProvider(this, factory).get(MainViewModel.class);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.weatherman.R;
+import com.example.weatherman.ui.base.ViewModelFactory;
 import com.example.weatherman.ui.mainmenu.MainActivity;
 import com.example.weatherman.ui.tutorial.TutorialActivity;
 
@@ -17,7 +18,8 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        splashViewModel = new ViewModelProvider(this).get(SplashViewModel.class);
+        ViewModelFactory factory = new ViewModelFactory(getApplication());
+        splashViewModel = new ViewModelProvider(this,factory).get(SplashViewModel.class);
 
         splashViewModel.getFirstRun().observe(this, flag -> {
             if (flag) {
