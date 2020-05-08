@@ -29,8 +29,7 @@ public class Repository {
     private SharedPreferences mPrefs;
 
     public Repository(Application application) {
-        //TODO Remove allow on main Thread
-        db = Room.databaseBuilder(application, AppDatabase.class, "DBNAME1").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(application, AppDatabase.class, "DBNAME1").build();
         mPrefs = PreferenceManager.getDefaultSharedPreferences(application);
         apiRequest = RetrofitService.getRetrofitInstance().create(ApiRequest.class);
 
